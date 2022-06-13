@@ -5,7 +5,7 @@ import ScreenA  from './screens/ScreenA'
 import ScreenB from './screens/ScreenB'
 import Set from './models/Set'
 import { useEffect, useState } from 'react';
-import { findAll, initDB } from './database/localdb';
+import { findAll, initDB, insert } from './database/localdb';
 
 export default function App() {
   
@@ -13,9 +13,11 @@ export default function App() {
 
   const Tab = createBottomTabNavigator();
 
+  
+
+
   useEffect(() => {
     initDB().then(res => {
-        console.log("initres: ", res)
         setDbInit(true);
       })
       .catch(err => console.log(err))
