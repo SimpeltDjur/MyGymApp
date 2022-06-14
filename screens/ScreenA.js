@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, TextInput } from 'react-native'
+import { View, Text, TextInput, FlatList } from 'react-native'
+
 import { findAll, insert } from '../database/localdb'
 
 const ScreenA = ({dbInit}) => {
@@ -8,19 +9,29 @@ const ScreenA = ({dbInit}) => {
 
   useEffect(() => {
     findAll()
-      .then(res => console.log("findallres: ", res))
+      .then(res => setSetList(res))
   }, [dbInit])
 
-  const handleAdd = (gymSet) => {
-    insert(gymSet)
-      .then(res => console.log("insertres: ", res))
-  } 
+  // här ska dt dekoreras lite mer och finnas en knapp som ändrar done till true.
+  const _renderdItem = ({ item }) => {
+    return (
+      <View>
+        <Text>{item.equivalent}</Text>
+      </View>
+    )
+  }
 
 
   return (
     <View>
-      <Text>ScreenA</Text>
+      <Text>Bajs</Text>
+      <FlatList 
+        data={setList}
+        renderItem={_renderdItem}
+        keyExtractor={(item, index) => index}
+      />
     </View>
+
   )
 }
 

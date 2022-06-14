@@ -24,12 +24,15 @@ export const findAll = () => {
     return new Promise((resolve, reject) => {
         db.transaction((transaction) => {
             transaction.executeSql(`SELECT * FROM gymSets`, [],
-                (tx, res) => resolve(res), 
+                (tx, res) => resolve(res.rows._array
+                    .map(gymSet => new Set( gymSet.weight, gymSet.reps))), 
                 (tx, err) => reject(err)
             )
         })
     })
 }
+
+
 
 export const insert = (gymSet) => {
     return new Promise((resolve, reject) => {
