@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput, Pressable } from 'react-native'
+import { View, Text, TextInput, Pressable, DeviceEventEmitter } from 'react-native'
 import { findAll, insert } from '../database/localdb';
 import Set from '../models/Set';
 
@@ -22,8 +22,10 @@ const ScreenB = () => {
     const tw = Number(weight)
     const tr = Number(reps);
     const gymSet = new Set(tw, tr);
-    insert(gymSet)
+    insert(gymSet).then(() => DeviceEventEmitter.emit('addSetEvent'))
   }
+
+  
 
 
   return (
