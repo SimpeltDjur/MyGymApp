@@ -23,7 +23,7 @@ const ScreenA = ({dbInit}) => {
   }
 
   const handleSuccess = (item) => {
-    console.log("Här ska jag ändra om done till true men eftersom man redan kan lägga till och ta fram mina set så tänker jag redovisa det här och sen göra klart MIN app i lugn och ro :P");
+    console.log("Här ska jag ändra om done till true");
 
   }
 
@@ -32,7 +32,7 @@ const ScreenA = ({dbInit}) => {
       return (
         <View>
           <Text>{item.weight} kg * {item.reps} reps motsvarar {item.equivalent} kg * 1 rep</Text>
-          <Pressable onPress={() => handleSuccess(item)}><Text>Här ska jag ha en knapp</Text></Pressable>
+          <Pressable onPress={() => handleSuccess(item)}><Text>Designa något fint här</Text></Pressable>
         </View>
       )
   }
